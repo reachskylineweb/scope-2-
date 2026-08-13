@@ -8,11 +8,11 @@ const EVENT_CONFIG = {
     hospitalName: "Premier Institute of Gastroenterology",
     eventName: "National Endoscopy Conference 2026",
     eventDate: "October 14 - 16, 2026",
-    venue: "Grand Convention Center & Advanced Endoscopy Suite, Premier Hospital Campus",
+    venue: "ITC Grand Chola, Chennai",
     phone: "+91 98765 43210",
     whatsapp: "+91 98765 43210",
     email: "secretariat@endoscopy2026.org",
-    address: "Premier Medical Center, Healthcare Boulevard, City Center"
+    address: "ITC Grand Chola, No. 63, Mount Road, Guindy, Chennai, Tamil Nadu 600032"
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7. 3D Spinning Wheel Carousel for Our Doctors Section
     initDoctors3DWheel();
 
-    // 8. 3D Mouse Parallax for Stethoscope Background Image
+    // 8. Single Rectangle Card Vertical Content Ticker (Downside-Up Animation Every 3 Seconds)
+    initSingleCardDownsideUpTicker();
+
+    // 9. Right-to-Left Card Sliding Showcase for Event Schedule Section
+    initScheduleRightToLeftSlider();
+
+    // 10. 3D Mouse Parallax for Stethoscope Background Image
     initStetho3DMouseParallax();
 });
 
@@ -368,4 +374,202 @@ function initStetho3DMouseParallax() {
     section.addEventListener('mouseleave', () => {
         stethoImg.style.transform = '';
     });
+}
+
+/**
+ * Single Rectangle Card Vertical Content Ticker (Downside-Up Animation Every 3 Seconds)
+ */
+function initSingleCardDownsideUpTicker() {
+    const card = document.getElementById('single-rectangle-card');
+    const items = document.querySelectorAll('.ticker-item');
+    const pills = document.querySelectorAll('.ticker-pill');
+    const counterNum = document.getElementById('ticker-current-num');
+    const progressBar = document.getElementById('ticker-progress-bar');
+
+    if (!card || !items.length) return;
+
+    let currentIndex = 0;
+    const totalItems = items.length;
+    let timer = null;
+
+    function resetProgress() {
+        if (!progressBar) return;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+        // Force reflow
+        void progressBar.offsetWidth;
+        progressBar.style.transition = 'width 3000ms linear';
+        progressBar.style.width = '100%';
+    }
+
+    function goToSlide(newIndex) {
+        const prevIndex = currentIndex;
+        currentIndex = (newIndex + totalItems) % totalItems;
+
+        items.forEach((item, idx) => {
+            item.classList.remove('active', 'exit-up');
+            if (idx === prevIndex && prevIndex !== currentIndex) {
+                // Outgoing item moves UP
+                item.classList.add('exit-up');
+            }
+        });
+
+        // Incoming item enters from DOWN
+        items[currentIndex].classList.add('active');
+
+        // Update counter number
+        if (counterNum) {
+            counterNum.textContent = String(currentIndex + 1).padStart(2, '0');
+        }
+
+        // Update pills
+        pills.forEach((pill, idx) => {
+            if (idx === currentIndex) {
+                pill.classList.add('active');
+            } else {
+                pill.classList.remove('active');
+            }
+        });
+
+        resetProgress();
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        resetProgress();
+        timer = setInterval(nextSlide, 3000);
+    }
+
+    function stopAutoPlay() {
+        if (timer) clearInterval(timer);
+        if (progressBar) {
+            progressBar.style.transition = 'none';
+        }
+    }
+
+    // Pill Clicks
+    pills.forEach((pill, idx) => {
+        pill.addEventListener('click', () => {
+            goToSlide(idx);
+            startAutoPlay();
+        });
+    });
+
+    // Pause on Hover
+    card.addEventListener('mouseenter', stopAutoPlay);
+    card.addEventListener('mouseleave', startAutoPlay);
+
+    // Initial state
+    goToSlide(0);
+    startAutoPlay();
+}
+
+/**
+ * Event Schedule Right-to-Left Sliding Showcase with Hover Pause Engine
+ */
+function initScheduleRightToLeftSlider() {
+    const wrapper = document.getElementById('schedule-slider-wrapper');
+    const slides = document.querySelectorAll('.schedule-slide-card');
+    const dots = document.querySelectorAll('#schedule-dots-bar .sched-dot');
+    const prevBtn = document.getElementById('sched-prev-btn');
+    const nextBtn = document.getElementById('sched-next-btn');
+
+    if (!wrapper || !slides.length) return;
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoSlideTimer = null;
+
+    function goToNextSlide(targetIndex) {
+        const prevIndex = currentIndex;
+        currentIndex = targetIndex !== undefined ? (targetIndex + totalSlides) % totalSlides : (currentIndex + 1) % totalSlides;
+
+        slides.forEach((slide, idx) => {
+            slide.classList.remove('active', 'exit-left', 'enter-right');
+            if (idx === prevIndex && prevIndex !== currentIndex) {
+                // Outgoing slide exits to LEFT
+                slide.classList.add('exit-left');
+            }
+        });
+
+        // Incoming slide enters from RIGHT
+        slides[currentIndex].classList.add('active');
+
+        // Update Dots
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function goToPrevSlide() {
+        const prevIndex = currentIndex;
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+
+        slides.forEach((slide, idx) => {
+            slide.classList.remove('active', 'exit-left', 'enter-right');
+            if (idx === prevIndex) {
+                // Outgoing slide exits to RIGHT
+                slide.classList.add('enter-right');
+            }
+        });
+
+        // Incoming slide enters from LEFT
+        slides[currentIndex].classList.add('active');
+
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function startAutoSlide() {
+        stopAutoSlide();
+        autoSlideTimer = setInterval(() => {
+            goToNextSlide();
+        }, 1500); // 1.5 seconds interval
+    }
+
+    function stopAutoSlide() {
+        if (autoSlideTimer) clearInterval(autoSlideTimer);
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            goToPrevSlide();
+            startAutoSlide();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            goToNextSlide();
+            startAutoSlide();
+        });
+    }
+
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            goToNextSlide(idx);
+            startAutoSlide();
+        });
+    });
+
+    // Hover Pause: Stop on mouseenter, resume on mouseleave
+    wrapper.addEventListener('mouseenter', stopAutoSlide);
+    wrapper.addEventListener('mouseleave', startAutoSlide);
+
+    // Initial Start
+    goToNextSlide(0);
+    startAutoSlide();
 }

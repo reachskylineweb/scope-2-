@@ -9,31 +9,44 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=20">
+    <link rel="stylesheet" href="css/style.css?v=2027">
 </head>
 <body>
 
-    <!-- 1. ECG LOADER -->
-    <div id="ecg-loader">
-        <div class="loader-content">
+    <!-- 1. 3D ENDOSCOPE CAMERA TUNNEL LOADER -->
+    <div id="endoscope-loader" data-stage="power-on">
+        <div class="loader-bg-tunnel">
+            <div class="tunnel-ring ring-1"></div>
+            <div class="tunnel-ring ring-2"></div>
+            <div class="tunnel-ring ring-3"></div>
+            <div class="tunnel-ring ring-4"></div>
+            <div class="tunnel-ring ring-5"></div>
+            
+            <div class="endoscope-lens-flare"></div>
+            <div class="endoscope-camera-light"></div>
+            <div class="tunnel-burst-flash"></div>
+        </div>
+
+        <div class="loader-content-hud">
+            <div class="endoscope-camera-badge">
+                <div class="cam-live-dot"></div>
+                <span class="cam-text">ENDOSCOPE 4K CAM • POWER ON</span>
+            </div>
+
             <div class="loader-logo">
-                <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="loader-logo-img" style="max-height: 55px; width: auto; filter: drop-shadow(0 4px 15px rgba(217, 119, 6, 0.3));">
+                <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="loader-logo-img">
             </div>
-            <div class="loader-event-title" data-config="eventName">NATIONAL ENDOSCOPY CONFERENCE 2026</div>
-            
-            <div class="ecg-monitor-box">
-                <svg class="ecg-svg" viewBox="0 0 500 100" preserveAspectRatio="none">
-                    <path class="ecg-path" d="M0,50 L120,50 L135,20 L150,80 L165,10 L185,90 L200,45 L215,55 L225,50 L350,50 L365,20 L380,80 L395,10 L415,90 L430,45 L445,55 L455,50 L500,50" />
-                </svg>
-            </div>
-            
-            <div class="loader-stats">
+
+            <div class="loader-milestone-text" id="loader-milestone-text">INITIALIZING 4K CAMERA POWER...</div>
+
+            <div class="hud-percentage-wrapper">
                 <div class="loader-percentage" id="loader-percentage">0%</div>
-                <div class="loader-status-text">LOADING CONTACT PAGE...</div>
             </div>
+            
+            <div class="loader-sub-text" data-config="eventName">NATIONAL ENDOSCOPY CONFERENCE 2026</div>
         </div>
     </div>
 
@@ -87,91 +100,89 @@
         </div>
     </section>
 
-    <!-- 4. CONTACT SECTION -->
-    <section class="section section-surface">
+    <!-- 4. CONTACT SECTION (PURE WHITE LIGHT LUXURY THEME) -->
+    <section class="section" style="background-color: #f8fafc; padding: 5rem 0;">
         <div class="container">
             <div class="contact-grid">
                 <!-- Contact Information Column -->
                 <div data-gsap="fade-up">
-                    <div class="badge">SECRETARIAT INFO</div>
-                    <h2 class="section-title" style="font-size: 2.25rem;">Conference Secretariat</h2>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                        Reach out directly to the event coordination desk at Premier Medical Center for quick assistance.
+                    <h2 class="section-title" style="font-size: 2.25rem; color: #0f172a;">Conference Secretariat</h2>
+                    <p style="color: #475569; margin-bottom: 2rem; font-size: 1.05rem;">
+                        Reach out directly to the event coordination desk for quick assistance.
                     </p>
 
                     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                         <!-- Address -->
-                        <div class="glass-card" style="display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start;">
-                            <div class="meta-icon" style="margin:0;">
+                        <div class="glass-card" style="display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start; background: #ffffff !important; border: 1px solid rgba(226, 232, 240, 0.9) !important; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important; border-radius: 16px;">
+                            <div class="meta-icon" style="margin:0; background: rgba(126, 34, 206, 0.08); color: #7e22ce;">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
                             <div>
-                                <h4 style="font-family: var(--font-heading); color: #fff; font-size: 1.1rem;">Hospital Address</h4>
-                                <p style="color: var(--text-secondary); font-size: 0.9rem;" data-config="address">Healthcare Boulevard, City Center</p>
-                                <p style="color: var(--secondary); font-size: 0.85rem; margin-top: 0.25rem;" data-config="venue">Grand Convention Hall, Premier Campus</p>
+                                <h4 style="font-family: var(--font-heading); color: #0f172a; font-size: 1.15rem; font-weight: 800;">Venue & Address</h4>
+                                <p style="color: #475569; font-size: 0.92rem; margin-top: 0.25rem;" data-config="address">ITC Grand Chola, No. 63, Mount Road, Guindy, Chennai, Tamil Nadu 600032</p>
+                                <p style="color: #d97706; font-size: 0.88rem; font-weight: 700; margin-top: 0.35rem;" data-config="venue">ITC Grand Chola, Chennai</p>
                             </div>
                         </div>
 
                         <!-- Phone & WhatsApp -->
-                        <div class="glass-card" style="display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start;">
-                            <div class="meta-icon" style="margin:0;">
+                        <div class="glass-card" style="display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start; background: #ffffff !important; border: 1px solid rgba(226, 232, 240, 0.9) !important; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important; border-radius: 16px;">
+                            <div class="meta-icon" style="margin:0; background: rgba(126, 34, 206, 0.08); color: #7e22ce;">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             </div>
                             <div>
-                                <h4 style="font-family: var(--font-heading); color: #fff; font-size: 1.1rem;">Phone & WhatsApp</h4>
-                                <a href="#" style="color: var(--secondary); font-size: 0.95rem; font-weight: 600; display: block;" data-config="phone">+91 98765 43210</a>
-                                <span style="font-size: 0.8rem; color: var(--text-secondary);">Available Mon-Sat: 09:00 AM - 06:00 PM</span>
+                                <h4 style="font-family: var(--font-heading); color: #0f172a; font-size: 1.15rem; font-weight: 800;">Phone & WhatsApp</h4>
+                                <a href="#" style="color: #7e22ce; font-size: 1rem; font-weight: 700; display: block; margin-top: 0.25rem;" data-config="phone">+91 98765 43210</a>
+                                <span style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem; display: block;">Available Mon-Sat: 09:00 AM - 06:00 PM</span>
                             </div>
                         </div>
 
                         <!-- Email -->
-                        <div class="glass-card" style="display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start;">
-                            <div class="meta-icon" style="margin:0;">
+                        <div class="glass-card" style="display: flex; gap: 1.25rem; padding: 1.5rem; align-items: flex-start; background: #ffffff !important; border: 1px solid rgba(226, 232, 240, 0.9) !important; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important; border-radius: 16px;">
+                            <div class="meta-icon" style="margin:0; background: rgba(126, 34, 206, 0.08); color: #7e22ce;">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             </div>
                             <div>
-                                <h4 style="font-family: var(--font-heading); color: #fff; font-size: 1.1rem;">Email Address</h4>
-                                <a href="#" style="color: var(--secondary); font-size: 0.95rem; font-weight: 600; display: block;" data-config="email">secretariat@endoscopy2026.org</a>
-                                <span style="font-size: 0.8rem; color: var(--text-secondary);">Inquiries answered within 24 hours</span>
+                                <h4 style="font-family: var(--font-heading); color: #0f172a; font-size: 1.15rem; font-weight: 800;">Email Address</h4>
+                                <a href="#" style="color: #7e22ce; font-size: 1rem; font-weight: 700; display: block; margin-top: 0.25rem;" data-config="email">secretariat@endoscopy2026.org</a>
+                                <span style="font-size: 0.82rem; color: #64748b; margin-top: 0.2rem; display: block;">Inquiries answered within 24 hours</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Direct Action Buttons for Mobile/Desktop -->
                     <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                        <a href="#" class="btn btn-secondary" style="flex:1;" data-config="whatsapp" target="_blank">
+                        <a href="#" class="btn btn-secondary" style="flex:1; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; font-weight: 700;" data-config="whatsapp" target="_blank">
                             WHATSAPP DIRECT
                         </a>
-                        <a href="#" class="btn btn-secondary" style="flex:1;" data-config="phone">
+                        <a href="#" class="btn btn-secondary" style="flex:1; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; font-weight: 700;" data-config="phone">
                             CALL NOW
                         </a>
                     </div>
                 </div>
 
                 <!-- Inquiry Form Column -->
-                <div class="glass-card" style="padding: 2.5rem; border-color: var(--border-glow);" data-gsap="fade-up">
-                    <div class="badge">SEND INQUIRY</div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: #fff; margin-bottom: 1.5rem;">Send a Direct Message</h3>
+                <div class="glass-card" style="padding: 2.5rem; background: #ffffff !important; border: 1px solid rgba(226, 232, 240, 0.9) !important; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08) !important; border-radius: 20px;" data-gsap="fade-up">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.75rem; color: #0f172a; font-weight: 800; margin-bottom: 1.5rem;">Send a Direct Message</h3>
 
                     <form id="contact-inquiry-form" class="registration-form">
                         <div class="form-group">
-                            <label class="form-label" for="contact-name">Your Full Name <span>*</span></label>
-                            <input type="text" id="contact-name" class="form-input" placeholder="e.g. Dr. Sarah Jenkins" required>
+                            <label class="form-label" for="contact-name" style="color: #0f172a !important; font-weight: 700;">Your Full Name <span style="color: #e11d48;">*</span></label>
+                            <input type="text" id="contact-name" class="form-input" placeholder="e.g. Dr. Sarah Jenkins" required style="background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important;">
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="contact-email">Email Address <span>*</span></label>
-                            <input type="email" id="contact-email" class="form-input" placeholder="sarah@clinic.com" required>
+                            <label class="form-label" for="contact-email" style="color: #0f172a !important; font-weight: 700;">Email Address <span style="color: #e11d48;">*</span></label>
+                            <input type="email" id="contact-email" class="form-input" placeholder="sarah@clinic.com" required style="background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important;">
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="contact-phone">Phone Number</label>
-                            <input type="tel" id="contact-phone" class="form-input" placeholder="+91 98765 43210">
+                            <label class="form-label" for="contact-phone" style="color: #0f172a !important; font-weight: 700;">Phone Number</label>
+                            <input type="tel" id="contact-phone" class="form-input" placeholder="+91 98765 43210" style="background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important;">
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="contact-message">Message / Inquiry Details <span>*</span></label>
-                            <textarea id="contact-message" class="form-textarea" rows="4" placeholder="How can our event team help you?" required></textarea>
+                            <label class="form-label" for="contact-message" style="color: #0f172a !important; font-weight: 700;">Message / Inquiry Details <span style="color: #e11d48;">*</span></label>
+                            <textarea id="contact-message" class="form-textarea" rows="4" placeholder="How can our event team help you?" required style="background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important;"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
@@ -180,28 +191,28 @@
                     </form>
 
                     <div id="contact-success-msg" style="display: none; text-align: center; padding: 2rem 1rem;">
-                        <div class="check-icon" style="width: 60px; height: 60px; font-size: 1.5rem; margin: 0 auto 1rem auto;">✓</div>
-                        <h4 style="font-family: var(--font-heading); color: #fff; font-size: 1.3rem;">Message Sent Successfully</h4>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Our secretariat coordinator will get back to you shortly.</p>
+                        <div class="check-icon" style="width: 60px; height: 60px; font-size: 1.5rem; margin: 0 auto 1rem auto; background: #059669; color: #fff;">✓</div>
+                        <h4 style="font-family: var(--font-heading); color: #0f172a; font-size: 1.3rem; font-weight: 800;">Message Sent Successfully</h4>
+                        <p style="color: #475569; font-size: 0.9rem; margin-top: 0.5rem;">Our secretariat coordinator will get back to you shortly.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Google Map Embed Placeholder Section -->
             <div style="margin-top: 4rem;" data-gsap="fade-up">
-                <div class="badge">LOCATION MAP</div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: #fff; margin-bottom: 1rem;">Event Venue Map</h3>
-                <div class="map-placeholder">
+                <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: #0f172a; font-weight: 800; margin-bottom: 1rem;">Event Venue Map</h3>
+                <div class="map-placeholder" style="border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 20px; overflow: hidden; height: 380px; position: relative;">
                     <!-- Configurable Map Embed Placeholder -->
                     <iframe 
-                        title="Hospital Map Location"
+                        title="ITC Grand Chola Map Location"
                         src="about:blank"
-                        data-map-url="[GOOGLE MAP EMBED URL]"
-                        style="width: 100%; height: 100%; border: none; background: #071728;"
+                        data-map-url="https://maps.google.com/?q=ITC+Grand+Chola+Chennai"
+                        style="width: 100%; height: 100%; border: none; background: #f8fafc;"
                         loading="lazy">
                     </iframe>
-                    <div style="position: absolute; inset:0; display: flex; align-items: center; justify-content: center; pointer-events: none; background: rgba(5, 13, 24, 0.6); color: var(--secondary); font-family: var(--font-heading); font-weight: 700;">
-                        [GOOGLE MAP EMBED LOCATION PLACEHOLDER]
+                    <div style="position: absolute; inset:0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; background: rgba(248, 250, 252, 0.92); color: #0f172a; font-family: var(--font-heading); font-weight: 700; gap: 0.5rem;">
+                        <div style="font-size: 1.25rem; color: #7e22ce; font-weight: 800;">📍 ITC Grand Chola, Chennai</div>
+                        <div style="color: #64748b; font-size: 0.9rem;">No. 63, Mount Road, Guindy, Chennai, Tamil Nadu 600032</div>
                     </div>
                 </div>
             </div>
@@ -311,13 +322,11 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/loader.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/registration.js"></script>
+    <!-- CUSTOM JS SCRIPTS -->
+    <script src="js/main.js?v=2027"></script>
+    <script src="js/loader.js?v=2027"></script>
+    <script src="js/animations.js?v=2027"></script>
+    <script src="js/registration.js?v=2027"></script>
     <script>
         // Contact form simple handler
         document.getElementById('contact-inquiry-form')?.addEventListener('submit', function(e) {

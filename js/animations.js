@@ -79,19 +79,18 @@ function initScrollAnimations() {
         });
     });
 
-    // Stagger Highlight Cards
-    const highlightCards = document.querySelectorAll('.highlight-card');
-    if (highlightCards.length) {
-        gsap.from(highlightCards, {
+    // Single Rectangle Card Fade/Slide Entrance Animation
+    const singleCard = document.getElementById('single-rectangle-card');
+    if (singleCard && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.from(singleCard, {
             scrollTrigger: {
-                trigger: '.highlights-grid',
-                start: 'top 80%',
+                trigger: '#highlights-section',
+                start: 'top 78%',
                 toggleActions: 'play none none none'
             },
             opacity: 0,
-            y: 50,
-            stagger: 0.15,
-            duration: 0.8,
+            y: 45,
+            duration: 0.9,
             ease: 'power3.out'
         });
     }
@@ -184,18 +183,128 @@ function initScrollAnimations() {
                     overwrite: 'auto'
                 });
             },
-            onLeaveBack: () => {
-                // Flip close ONE BY ONE sequentially when scrolling up past
-                gsap.to(flipCards, {
-                    rotateY: -90,
-                    opacity: 0,
-                    scale: 0.85,
-                    duration: 0.5,
-                    stagger: 0.12,
-                    ease: 'power2.in',
-                    overwrite: 'auto'
-                });
-            }
         });
     }
+
+    // Slow Fade-In Reveal for "Pioneering Modern Gastrointestinal Endoscopy" in About Section
+    const pioneeringCard = document.getElementById('pioneering-content-card');
+    if (pioneeringCard && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        const pioneeringTitle = pioneeringCard.querySelector('.quantum-hero-title');
+        const pioneeringDesc = pioneeringCard.querySelector('.quantum-hero-desc');
+        const pioneeringBadge = pioneeringCard.querySelector('.quantum-card-badge');
+        const pioneeringGrid = pioneeringCard.querySelector('.quantum-impact-grid');
+
+        // Set initial hidden state
+        gsap.set([pioneeringCard, pioneeringBadge, pioneeringTitle, pioneeringDesc, pioneeringGrid], {
+            opacity: 0
+        });
+
+        const slowTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: pioneeringCard,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+
+        slowTl
+            .to(pioneeringCard, { opacity: 1, y: 0, duration: 1.0, ease: 'power2.out' })
+            .to(pioneeringBadge, { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, '-=0.6')
+            .fromTo(pioneeringTitle, 
+                { opacity: 0, y: 50, filter: 'blur(12px)' }, 
+                { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.8, ease: 'power2.out' }, 
+                '-=0.8'
+            )
+            .fromTo(pioneeringDesc, 
+                { opacity: 0, y: 35, filter: 'blur(8px)' }, 
+                { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.6, ease: 'power2.out' }, 
+                '-=1.2'
+            )
+            .fromTo(pioneeringGrid, 
+                { opacity: 0, y: 30 }, 
+                { opacity: 1, y: 0, duration: 1.4, ease: 'power2.out' }, 
+                '-=1.0'
+            );
+    }
+
+    // Section 1 & Section 2: IntersectionObserver for 100% Foolproof Pop-Up & 3D Flip Triggering
+    if (typeof IntersectionObserver !== 'undefined') {
+        const popoutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        // Observe Our Endoscopists Pop-Out Cards
+        document.querySelectorAll('.doc-popout-card-wrapper').forEach(card => {
+            popoutObserver.observe(card);
+        });
+
+        // Observe Guest Doctors 3D Flip Cards
+        document.querySelectorAll('.guest-3d-card-scene').forEach(card => {
+            popoutObserver.observe(card);
+        });
+    }
+
+    // Initialize 3D Upside Down Gravity Perspective Section System
+    initUpsideDownGravitySection();
+}
+
+/**
+ * 3. 3D UPSIDE DOWN GRAVITY PERSPECTIVE & CARD FLIP SYSTEM
+ */
+function initUpsideDownGravitySection() {
+    // 3.1 GSAP ScrollTrigger Upside Down 180° Roll Entrance
+    const upsideDownCards = document.querySelectorAll('[data-gsap="upside-down-card"]');
+    if (upsideDownCards.length && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        upsideDownCards.forEach((cardScene, index) => {
+            const innerCard = cardScene.querySelector('.intro-card-3d-inner');
+            if (!innerCard) return;
+
+            gsap.fromTo(innerCard, 
+                {
+                    rotateX: 180,
+                    scale: 0.82,
+                    y: -70,
+                    opacity: 0
+                },
+                {
+                    scrollTrigger: {
+                        trigger: cardScene,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    rotateX: 0,
+                    scale: 1,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.25,
+                    delay: index * 0.2,
+                    ease: 'back.out(1.5)'
+                }
+            );
+        });
+    }
+
+    // 3.2 Click-to-Flip Handler for Individual Cards
+    const cardScenes = document.querySelectorAll('.intro-card-3d-scene');
+    cardScenes.forEach(scene => {
+        const inner = scene.querySelector('.intro-card-3d-inner');
+        if (!inner) return;
+
+        scene.addEventListener('click', () => {
+            inner.classList.toggle('flipped-upside-down');
+        });
+    });
+}
+
+// Refresh ScrollTrigger after full window load
+if (typeof window !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
 }

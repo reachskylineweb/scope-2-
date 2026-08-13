@@ -1,45 +1,47 @@
 /* ==========================================================================
-   NATIONAL ENDOSCOPY CONFERENCE 2026 - ECG LOADER
-   Animated EKG SVG Waveform & Percentage Progress Controller
+   NATIONAL ENDOSCOPY CONFERENCE 2026 - 3D ENDOSCOPE CAMERA TUNNEL LOADER
+   0–30%   → Endoscope camera powers on
+   30–60%  → Camera moves through dark medical tunnel
+   60–90%  → Light gradually increases
+   100%    → Camera reaches bright screen → page appears
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initECGLoader();
+    initEndoscopeTunnelLoader();
 });
 
-function initECGLoader() {
-    const loader = document.getElementById('ecg-loader');
+function initEndoscopeTunnelLoader() {
+    const loader = document.getElementById('endoscope-loader') || document.getElementById('ecg-loader');
     const percentageText = document.getElementById('loader-percentage');
-    const path = document.querySelector('.ecg-path');
+    const milestoneText = document.getElementById('loader-milestone-text');
 
     if (!loader || !percentageText) return;
 
     let progress = 0;
-    const duration = 1000; // milliseconds (Faster loader)
+    const duration = 900; // Fast 0.9 second duration
     const startTime = performance.now();
 
-    // 1. Animate SVG Path Stroke Dash if path exists
-    if (path) {
-        const pathLength = path.getTotalLength ? path.getTotalLength() : 600;
-        path.style.strokeDasharray = pathLength;
-        path.style.strokeDashoffset = pathLength;
-        
-        // Continuous rhythm CSS animation fallback/overlay
-        path.animate([
-            { strokeDashoffset: pathLength },
-            { strokeDashoffset: 0 }
-        ], {
-            duration: duration,
-            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            fill: 'forwards'
-        });
-    }
-
-    // 2. Count Up Loading Percentage
     function updateProgress(currentTime) {
         const elapsedTime = currentTime - startTime;
-        progress = Math.min(Math.floor((elapsedTime / duration) * 100), 100);
-        percentageText.textContent = `${progress}%`;
+        progress = Math.min((elapsedTime / duration) * 100, 100);
+        const currentPercent = Math.floor(progress);
+
+        percentageText.textContent = `${currentPercent}%`;
+
+        // Update 4 Stage Milestones rapidly
+        if (progress < 30) {
+            loader.setAttribute('data-stage', 'power-on');
+            if (milestoneText) milestoneText.textContent = "CAMERA POWER ON...";
+        } else if (progress >= 30 && progress < 60) {
+            loader.setAttribute('data-stage', 'tunnel-travel');
+            if (milestoneText) milestoneText.textContent = "TUNNEL TRAVERSAL...";
+        } else if (progress >= 60 && progress < 90) {
+            loader.setAttribute('data-stage', 'light-increase');
+            if (milestoneText) milestoneText.textContent = "LIGHT FIELD INTENSIFYING...";
+        } else {
+            loader.setAttribute('data-stage', 'bright-screen');
+            if (milestoneText) milestoneText.textContent = "ENTERING SCOPE 2026...";
+        }
 
         if (progress < 100) {
             requestAnimationFrame(updateProgress);
@@ -50,16 +52,17 @@ function initECGLoader() {
 
     requestAnimationFrame(updateProgress);
 
-    // 3. Complete & Smooth Exit
     function completeLoading() {
         setTimeout(() => {
-            loader.classList.add('fade-out');
-            document.body.style.overflow = '';
+            loader.classList.add('flash-burst');
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+                document.body.style.overflow = '';
 
-            // Trigger GSAP Hero Entrance if available
-            if (typeof initHeroAnimations === 'function') {
-                initHeroAnimations();
-            }
-        }, 150);
+                if (typeof initHeroAnimations === 'function') {
+                    initHeroAnimations();
+                }
+            }, 150);
+        }, 50);
     }
 }

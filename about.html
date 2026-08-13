@@ -9,31 +9,44 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=20">
+    <link rel="stylesheet" href="css/style.css?v=2027">
 </head>
 <body>
 
-    <!-- 1. ECG LOADER -->
-    <div id="ecg-loader">
-        <div class="loader-content">
+    <!-- 1. 3D ENDOSCOPE CAMERA TUNNEL LOADER -->
+    <div id="endoscope-loader" data-stage="power-on">
+        <div class="loader-bg-tunnel">
+            <div class="tunnel-ring ring-1"></div>
+            <div class="tunnel-ring ring-2"></div>
+            <div class="tunnel-ring ring-3"></div>
+            <div class="tunnel-ring ring-4"></div>
+            <div class="tunnel-ring ring-5"></div>
+            
+            <div class="endoscope-lens-flare"></div>
+            <div class="endoscope-camera-light"></div>
+            <div class="tunnel-burst-flash"></div>
+        </div>
+
+        <div class="loader-content-hud">
+            <div class="endoscope-camera-badge">
+                <div class="cam-live-dot"></div>
+                <span class="cam-text">ENDOSCOPE 4K CAM • POWER ON</span>
+            </div>
+
             <div class="loader-logo">
-                <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="loader-logo-img" style="max-height: 55px; width: auto; filter: drop-shadow(0 4px 15px rgba(217, 119, 6, 0.3));">
+                <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="loader-logo-img">
             </div>
-            <div class="loader-event-title" data-config="eventName">NATIONAL ENDOSCOPY CONFERENCE 2026</div>
-            
-            <div class="ecg-monitor-box">
-                <svg class="ecg-svg" viewBox="0 0 500 100" preserveAspectRatio="none">
-                    <path class="ecg-path" d="M0,50 L120,50 L135,20 L150,80 L165,10 L185,90 L200,45 L215,55 L225,50 L350,50 L365,20 L380,80 L395,10 L415,90 L430,45 L445,55 L455,50 L500,50" />
-                </svg>
-            </div>
-            
-            <div class="loader-stats">
+
+            <div class="loader-milestone-text" id="loader-milestone-text">INITIALIZING 4K CAMERA POWER...</div>
+
+            <div class="hud-percentage-wrapper">
                 <div class="loader-percentage" id="loader-percentage">0%</div>
-                <div class="loader-status-text">LOADING ABOUT PAGE...</div>
             </div>
+            
+            <div class="loader-sub-text" data-config="eventName">NATIONAL ENDOSCOPY CONFERENCE 2026</div>
         </div>
     </div>
 
@@ -104,7 +117,7 @@
             <!-- 3D Centered Quantum Stage -->
             <div class="quantum-stage-layout" style="grid-template-columns: 1fr; max-width: 950px; margin: 0 auto;">
                 <!-- Master 3D Hero Glass Stage Card -->
-                <div class="quantum-hero-card" data-gsap="fade-up" style="width: 100%;">
+                <div class="quantum-hero-card" id="pioneering-content-card" style="width: 100%;">
                     <div class="quantum-card-badge">
                         <span class="pulse-dot"></span>
                         <span>OCTOBER 14-16, 2026 • PREMIER HOSPITAL</span>
@@ -143,83 +156,71 @@
     <!-- ==========================================================================
          SECTION 2: OUR ENDOSCOPISTS SECTION (3D Isometric Card Grid Layout)
          ========================================================================== -->
-    <section id="our-doctors" class="section section-dark">
-        <div class="container">
+    <!-- ==========================================================================
+         SECTION 2: OUR ENDOSCOPISTS SECTION (3D POP-OUT CARDS GRID)
+         ========================================================================== -->
+    <section id="our-doctors" class="section section-dark" style="position: relative; padding: 7rem 0 6rem 0; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 3;">
             <div class="section-header" data-gsap="fade-up">
                 <div class="badge">SECTION 02 • CLINICAL LEADERSHIP</div>
                 <h2 class="section-title">Our Endoscopists & Organizing Chairs</h2>
-                <p class="section-subtitle">Experience our 3D spinning wheel carousel of senior gastroenterology chairs and endoscopy directors.</p>
+                <p class="section-subtitle">Meet our distinguished gastroenterology chairs, clinical directors, and organizing committee leaders.</p>
             </div>
 
-            <!-- 3D SPINNING WHEEL CAROUSEL STAGE -->
-            <div class="doctors-wheel-wrapper" data-gsap="fade-up">
-                <div class="wheel-3d-stage">
-                    <div id="wheel-3d-ring" class="wheel-3d-ring">
-                        <!-- Doctor Wheel Card 0 -->
-                        <div class="doctor-wheel-card active" data-index="0">
-                            <div class="doctor-avatar-3d">
-                                <div class="doctor-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
-                            </div>
+            <!-- 3 Pop-Out Doctor Cards Grid -->
+            <div class="doc-popout-grid">
+                
+                <!-- Doctor Card 1 -->
+                <div class="doc-popout-card-wrapper">
+                    <div class="doc-image-popout-wrapper">
+                        <div class="doc-image-halo"></div>
+                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Rajesh V. Sharma" class="doc-popout-img">
+                    </div>
+                    <div class="doc-popout-card">
+                        <div class="doc-popout-details">
                             <span class="doctor-badge-tag">ORGANIZING CHAIR</span>
                             <h3 class="doctor-name">Dr. Rajesh V. Sharma</h3>
                             <div class="doctor-role">Director & Senior Consultant</div>
                             <div class="doctor-institution">Department of Digestive Sciences, Premier Hospital</div>
                             <div class="doctor-session-chip">Specialty: Advanced EMR, ESD & POEM</div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Doctor Wheel Card 1 -->
-                        <div class="doctor-wheel-card" data-index="1">
-                            <div class="doctor-avatar-3d">
-                                <div class="doctor-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
-                            </div>
+                <!-- Doctor Card 2 -->
+                <div class="doc-popout-card-wrapper">
+                    <div class="doc-image-popout-wrapper">
+                        <div class="doc-image-halo"></div>
+                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Sunita K. Menon" class="doc-popout-img">
+                    </div>
+                    <div class="doc-popout-card">
+                        <div class="doc-popout-details">
                             <span class="doctor-badge-tag">ENDOSCOPY CO-CHAIR</span>
                             <h3 class="doctor-name">Dr. Sunita K. Menon</h3>
                             <div class="doctor-role">Professor of Advanced Endoscopy</div>
                             <div class="doctor-institution">Institute of Advanced Endosurgery, Premier Campus</div>
                             <div class="doctor-session-chip">Specialty: Minimally Invasive Endoscopy</div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Doctor Wheel Card 2 -->
-                        <div class="doctor-wheel-card" data-index="2">
-                            <div class="doctor-avatar-3d">
-                                <div class="doctor-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
-                            </div>
+                <!-- Doctor Card 3 -->
+                <div class="doc-popout-card-wrapper">
+                    <div class="doc-image-popout-wrapper">
+                        <div class="doc-image-halo"></div>
+                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Alexander Thorne" class="doc-popout-img">
+                    </div>
+                    <div class="doc-popout-card">
+                        <div class="doc-popout-details">
                             <span class="doctor-badge-tag">EUS PROGRAM DIRECTOR</span>
                             <h3 class="doctor-name">Dr. Alexander Thorne</h3>
                             <div class="doctor-role">Head of Interventional Endosonography</div>
                             <div class="doctor-institution">Premier Gastro & Pancreatic Center</div>
                             <div class="doctor-session-chip">Specialty: Diagnostic & Therapeutic EUS</div>
                         </div>
-
-                        <!-- Doctor Wheel Card 3 -->
-                        <div class="doctor-wheel-card" data-index="3">
-                            <div class="doctor-avatar-3d">
-                                <div class="doctor-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                                </div>
-                            </div>
-                            <span class="doctor-badge-tag">HEPATOLOGY CHAIR</span>
-                            <h3 class="doctor-name">Dr. Meera P. Patel</h3>
-                            <div class="doctor-role">Consultant Hepatologist & ERCP Specialist</div>
-                            <div class="doctor-institution">Premier Academic Medical Center</div>
-                            <div class="doctor-session-chip">Specialty: Complex ERCP & Cholangioscopy</div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Wheel Indicators / Dots -->
-                <div class="wheel-indicators">
-                    <button class="wheel-dot active" data-spin-to="0">01 Dr. Sharma</button>
-                    <button class="wheel-dot" data-spin-to="1">02 Dr. Menon</button>
-                    <button class="wheel-dot" data-spin-to="2">03 Dr. Thorne</button>
-                    <button class="wheel-dot" data-spin-to="3">04 Dr. Patel</button>
-                </div>
             </div>
         </div>
     </section>
@@ -228,7 +229,7 @@
     <!-- ==========================================================================
          SECTION 3: GUEST DOCTORS SECTION (Cards with 3D Video Backgrounds)
          ========================================================================== -->
-    <section id="guest-doctors" class="section section-dark" style="position: relative; padding: 6rem 0;">
+    <section id="guest-doctors" class="section" style="position: relative; padding: 6rem 0; background: #f8fafc;">
         <div class="container" style="position: relative; z-index: 3;">
             <div class="section-header" data-gsap="fade-up">
                 <h2 class="section-title">Guest Doctors & Keynote Faculty</h2>
@@ -239,186 +240,250 @@
             <div class="guest-cards-video-container">
                 <div class="guest-3d-cards-grid">
                     <!-- Guest Doctor 1 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">TOKYO, JAPAN</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">TOKYO, JAPAN</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Prof. Dr. Hiroshi Tanaka" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Prof. Dr. Hiroshi Tanaka</h3>
+                                        <div class="guest-title">Director, International Endoscopy Center</div>
+                                        <div class="guest-hospital">Tokyo University Medical Center</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Third-Space Endoscopy & ESD Innovations</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Prof. Dr. Hiroshi Tanaka</h3>
-                                <div class="guest-title">Director, International Endoscopy Center</div>
-                                <div class="guest-hospital">Tokyo University Medical Center</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Third-Space Endoscopy & ESD Innovations</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 2 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">BALTIMORE, USA</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">BALTIMORE, USA</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Elizabeth Vance" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Dr. Elizabeth Vance</h3>
+                                        <div class="guest-title">Chief of Digestive AI Research</div>
+                                        <div class="guest-hospital">Johns Hopkins Medicine, USA</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">AI-Assisted Lesion Detection & CADe Screening</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Dr. Elizabeth Vance</h3>
-                                <div class="guest-title">Chief of Digestive AI Research</div>
-                                <div class="guest-hospital">Johns Hopkins Medicine, USA</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">AI-Assisted Lesion Detection & CADe Screening</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 3 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">PARIS, FRANCE</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">PARIS, FRANCE</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Jean-Luc Dubois" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Dr. Jean-Luc Dubois</h3>
+                                        <div class="guest-title">Professor of Advanced Endoscopy</div>
+                                        <div class="guest-hospital">European Institute of Digestive Oncology</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Endoscopic Bariatric & Metabolic Interventions</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Dr. Jean-Luc Dubois</h3>
-                                <div class="guest-title">Professor of Advanced Endoscopy</div>
-                                <div class="guest-hospital">European Institute of Digestive Oncology</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Endoscopic Bariatric & Metabolic Interventions</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 4 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">NEW DELHI, INDIA</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">NEW DELHI, INDIA</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Ananya Roy" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Dr. Ananya Roy</h3>
+                                        <div class="guest-title">Head of GI Endoscopy Division</div>
+                                        <div class="guest-hospital">All India Institute of Medical Sciences (AIIMS)</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Difficult ERCP Cannulation & Cholangioscopy</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Dr. Ananya Roy</h3>
-                                <div class="guest-title">Head of GI Endoscopy Division</div>
-                                <div class="guest-hospital">All India Institute of Medical Sciences (AIIMS)</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Difficult ERCP Cannulation & Cholangioscopy</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 5 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">LONDON, UK</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">LONDON, UK</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Prof. Dr. Marcus Sterling" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Prof. Dr. Marcus Sterling</h3>
+                                        <div class="guest-title">Consultant Endoscopist & Clinical Lead</div>
+                                        <div class="guest-hospital">St. Mark's Hospital & Imperial College London</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Advanced EUS-Guided Vascular Interventions</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Prof. Dr. Marcus Sterling</h3>
-                                <div class="guest-title">Consultant Endoscopist & Clinical Lead</div>
-                                <div class="guest-hospital">St. Mark's Hospital & Imperial College London</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Advanced EUS-Guided Vascular Interventions</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 6 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">MADRID, SPAIN</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">MADRID, SPAIN</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Sophia Rodriguez" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Dr. Sophia Rodriguez</h3>
+                                        <div class="guest-title">Head of Interventional Gastroenterology</div>
+                                        <div class="guest-hospital">Hospital Universitario La Paz, Madrid</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Endoscopic Treatment of Early Esophageal Neoplasms</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Dr. Sophia Rodriguez</h3>
-                                <div class="guest-title">Head of Interventional Gastroenterology</div>
-                                <div class="guest-hospital">Hospital Universitario La Paz, Madrid</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Endoscopic Treatment of Early Esophageal Neoplasms</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 7 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">SHANGHAI, CHINA</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">SHANGHAI, CHINA</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Dr. Chen Wei-Zhang" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Dr. Chen Wei-Zhang</h3>
+                                        <div class="guest-title">Director of Digestive Diseases</div>
+                                        <div class="guest-hospital">Fudan University Shanghai Cancer Center</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Novel POEM Techniques for Achalasia Management</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Dr. Chen Wei-Zhang</h3>
-                                <div class="guest-title">Director of Digestive Diseases</div>
-                                <div class="guest-hospital">Fudan University Shanghai Cancer Center</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Novel POEM Techniques for Achalasia Management</div>
                         </div>
                     </div>
 
                     <!-- Guest Doctor 8 -->
-                    <div class="guest-3d-card" data-gsap="flip-card">
-                        <div class="guest-card-header">
-                            <span class="guest-flag-badge">MUNICH, GERMANY</span>
-                        </div>
-                        <div class="guest-avatar-wrapper">
-                            <div class="guest-avatar-box">
-                                <div class="guest-avatar-inner">
-                                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <div class="guest-3d-card-scene">
+                        <div class="guest-flip-card-inner">
+                            <div class="guest-card-front">
+                                <div class="guest-card-header">
+                                    <span class="guest-flag-badge">MUNICH, GERMANY</span>
+                                </div>
+                                <div class="guest-avatar-wrapper">
+                                    <div class="guest-avatar-box">
+                                        <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786648917/e998c2fc-ecc6-47f3-a851-d5e3e81ddc04_qwxtsi.jpg" alt="Prof. Dr. Hans Weber" class="guest-doctor-photo">
+                                    </div>
+                                    <div class="guest-info-box">
+                                        <h3 class="guest-name">Prof. Dr. Hans Weber</h3>
+                                        <div class="guest-title">Chair of Hepatobiliary Endoscopy</div>
+                                        <div class="guest-hospital">Ludwig Maximilian University of Munich</div>
+                                    </div>
+                                </div>
+                                <div class="guest-keynote-box">
+                                    <div class="guest-keynote-label">KEYNOTE LECTURE</div>
+                                    <div class="guest-keynote-topic">Single-Operator Cholangioscopy in Biliary Strictures</div>
                                 </div>
                             </div>
-                            <div class="guest-info-box">
-                                <h3 class="guest-name">Prof. Dr. Hans Weber</h3>
-                                <div class="guest-title">Chair of Hepatobiliary Endoscopy</div>
-                                <div class="guest-hospital">Ludwig Maximilian University of Munich</div>
+                            <div class="guest-card-back">
+                                <div class="blank-white-logo-watermark">
+                                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="blank-logo-img">
+                                </div>
+                                <div class="blank-card-chip">SCOPE 2026 KEYNOTE FACULTY</div>
                             </div>
-                        </div>
-                        <div class="guest-keynote-box">
-                            <div class="guest-keynote-label">KEYNOTE LECTURE</div>
-                            <div class="guest-keynote-topic">Single-Operator Cholangioscopy in Biliary Strictures</div>
                         </div>
                     </div>
                 </div>
@@ -538,9 +603,10 @@
     <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/loader.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/registration.js"></script>
+    <!-- CUSTOM JS SCRIPTS -->
+    <script src="js/main.js?v=2027"></script>
+    <script src="js/loader.js?v=2027"></script>
+    <script src="js/animations.js?v=2027"></script>
+    <script src="js/registration.js?v=2027"></script>
 </body>
 </html>

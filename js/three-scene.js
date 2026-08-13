@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Tech 3D Scene (if container exists)
     initTech3DScene();
+
+    // Initialize 3D DNA Double Helix Scene for Future of Endoscopy Section
+    initDNA3DScene();
 });
 
 /**
@@ -283,4 +286,137 @@ function initTech3DScene() {
     }
 
     animateTech();
+}
+
+/**
+ * 3. 3D DNA DOUBLE HELIX SCENE FOR "THE FUTURE OF ENDOSCOPY" SECTION
+ */
+function initDNA3DScene() {
+    const canvas = document.getElementById('dna-webgl-canvas');
+    if (!canvas) return;
+
+    const section = canvas.parentElement;
+    let width = section.clientWidth || window.innerWidth;
+    let height = section.clientHeight || 500;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+    camera.position.set(0, 0, 36);
+
+    const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true
+    });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // DNA Group
+    const dnaGroup = new THREE.Group();
+
+    // Create 3D DNA Double Helix Parameters
+    const numPairs = 42;
+    const radius = 6.5;
+    const heightStep = 0.9;
+    const twistStep = 0.3;
+
+    const sphereGeo = new THREE.SphereGeometry(0.5, 16, 16);
+    const cylinderGeo = new THREE.CylinderGeometry(0.1, 0.1, 1, 12);
+
+    const matStrand1 = new THREE.MeshBasicMaterial({ color: 0x7e22ce }); // Imperial Purple
+    const matStrand2 = new THREE.MeshBasicMaterial({ color: 0x00d2ff }); // Neon Cyan
+    const matRung = new THREE.MeshBasicMaterial({ color: 0xd97706, transparent: true, opacity: 0.85 }); // Amber Gold
+
+    for (let i = 0; i < numPairs; i++) {
+        const y = (i - numPairs / 2) * heightStep;
+        const angle = i * twistStep;
+
+        // Position of Strand 1
+        const x1 = Math.cos(angle) * radius;
+        const z1 = Math.sin(angle) * radius;
+
+        // Position of Strand 2 (180 degrees opposite)
+        const x2 = Math.cos(angle + Math.PI) * radius;
+        const z2 = Math.sin(angle + Math.PI) * radius;
+
+        // Node Sphere 1
+        const node1 = new THREE.Mesh(sphereGeo, matStrand1);
+        node1.position.set(x1, y, z1);
+        dnaGroup.add(node1);
+
+        // Node Sphere 2
+        const node2 = new THREE.Mesh(sphereGeo, matStrand2);
+        node2.position.set(x2, y, z2);
+        dnaGroup.add(node2);
+
+        // Connecting Rung Cylinder
+        const rungMesh = new THREE.Mesh(cylinderGeo, matRung);
+        const rungLength = radius * 2;
+        rungMesh.scale.set(1, rungLength, 1);
+        rungMesh.position.set(0, y, 0);
+        rungMesh.rotation.z = Math.PI / 2;
+        rungMesh.rotation.y = -angle;
+        dnaGroup.add(rungMesh);
+    }
+
+    // Tilt DNA Helix diagonally
+    dnaGroup.rotation.z = Math.PI / 6;
+    scene.add(dnaGroup);
+
+    // Particle Cloud Background Ambient Glow
+    const pGeometry = new THREE.BufferGeometry();
+    const pCount = 250;
+    const pPositions = new Float32Array(pCount * 3);
+    for (let p = 0; p < pCount * 3; p++) {
+        pPositions[p] = (Math.random() - 0.5) * 65;
+    }
+    pGeometry.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+    const pMaterial = new THREE.PointsMaterial({
+        size: 0.9,
+        color: 0x7e22ce,
+        transparent: true,
+        opacity: 0.45
+    });
+    const pSystem = new THREE.Points(pGeometry, pMaterial);
+    scene.add(pSystem);
+
+    // Mouse Parallax Interaction
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+        width = section.clientWidth || window.innerWidth;
+        height = section.clientHeight || 500;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+
+    let clock = new THREE.Clock();
+
+    function animateDNA() {
+        requestAnimationFrame(animateDNA);
+        const elapsedTime = clock.getElapsedTime();
+
+        mouseX += (targetMouseX - mouseX) * 0.05;
+        mouseY += (targetMouseY - mouseY) * 0.05;
+
+        // Continuous 3D rotation of DNA Double Helix
+        dnaGroup.rotation.y = elapsedTime * 0.35 + mouseX * 0.3;
+        dnaGroup.rotation.x = Math.sin(elapsedTime * 0.2) * 0.15 + mouseY * 0.2;
+
+        pSystem.rotation.y = elapsedTime * 0.04;
+
+        renderer.render(scene, camera);
+    }
+
+    animateDNA();
 }
