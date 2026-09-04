@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SCOPE 2027 Gallery - Explore photos from live demonstrations, hands-on workshops, faculty symposia, and endoscopy technology showcases.">
+    <title>Event Gallery | SCOPE 2027 International Endoscopy Conference</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css?v=2050">
+</head>
+<body>
+
+    <!-- 1. 3D ENDOSCOPE CAMERA TUNNEL LOADER -->
+    <div id="endoscope-loader" data-stage="power-on">
+        <div class="loader-bg-tunnel">
+            <div class="tunnel-ring ring-1"></div>
+            <div class="tunnel-ring ring-2"></div>
+            <div class="tunnel-ring ring-3"></div>
+            <div class="tunnel-ring ring-4"></div>
+            <div class="tunnel-ring ring-5"></div>
+            
+            <div class="endoscope-lens-flare"></div>
+            <div class="endoscope-camera-light"></div>
+            <div class="tunnel-burst-flash"></div>
+        </div>
+
+        <div class="loader-content-hud">
+            <div class="endoscope-camera-badge">
+                <div class="cam-live-dot"></div>
+                <span class="cam-text">SCOPE 2027 • POWER ON</span>
+            </div>
+
+            <div class="loader-logo">
+                <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="loader-logo-img">
+            </div>
+
+            <div class="loader-milestone-text" id="loader-milestone-text">INITIALIZING SCOPE 2027...</div>
+
+            <div class="hud-percentage-wrapper">
+                <div class="loader-percentage" id="loader-percentage">0%</div>
+            </div>
+            
+            <div class="loader-sub-text" data-config="eventName">SCOPE 2027</div>
+        </div>
+    </div>
+
+    <!-- 2. HEADER -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-logo-badge">
+                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="brand-logo-img">
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="gallery.html" class="nav-link active">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <button class="btn btn-primary open-register-modal nav-register-btn">REGISTER NOW</button>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn btn-primary open-register-modal">
+                    REGISTER NOW
+                </button>
+                <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. PAGE HERO BANNER WITH 3D CINEMATIC BACKGROUND VIDEO -->
+    <section class="hero-section" style="min-height: 55vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding-top: var(--header-height);">
+        <!-- Embedded Cloudinary 3D Background Video -->
+        <div class="hero-video-wrapper">
+            <video autoplay loop muted playsinline webkit-playsinline disablepictureinpicture disableremoteplayback class="hero-bg-video" preload="auto">
+                <source src="https://res.cloudinary.com/dlttxqrod/video/upload/Creating_3D_cinematic_video_1080p_202608131515_owvvbw.mp4" type="video/mp4">
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+
+        <div class="container" style="position: relative; z-index: 3; text-align: center;">
+            <div class="hero-content">
+                <div class="hero-tagline-accent">CONFERENCE GALLERY</div>
+                <h1 class="hero-title">Medical Innovation</h1>
+
+                <p class="hero-subtitle">Browse through highlights of live endoscopic broadcasts, hands-on simulator workshops, faculty sessions, and clinical exhibitions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALLERY & FILTER SECTION -->
+    <section class="section section-surface">
+        <div class="container">
+            <!-- Filter Bar -->
+            <div class="gallery-filter-bar">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="demos">Live Demonstrations</button>
+                <button class="filter-btn" data-filter="workshops">Workshops</button>
+                <button class="filter-btn" data-filter="faculty">Faculty & Speakers</button>
+                <button class="filter-btn" data-filter="hospital">Hospital & Tech</button>
+                <button class="filter-btn" data-filter="moments">Event Moments</button>
+            </div>
+
+            <!-- Gallery Grid with Official SCOPE Conference Photos -->
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-card" data-category="moments">
+                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786629216/MS1X4160_kghvox.jpg" alt="SCOPE 2026 Official Conference Session" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Event Moments</span>
+                        <h3 class="gallery-title">Official Inauguration & Keynote Address</h3>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-card" data-category="faculty">
+                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786629257/MS1X4164_rouzsx.jpg" alt="SCOPE 2026 Keynote Faculty & Scientific Presentations" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Faculty & Speakers</span>
+                        <h3 class="gallery-title">Keynote Scientific Session & Clinical Panel</h3>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-card" data-category="demos">
+                    <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786629270/MS1X4207_bfhc80.jpg" alt="SCOPE 2026 Live Endoscopic Broadcast" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">Live Demonstrations</span>
+                        <h3 class="gallery-title">Live Procedure Broadcast & Interactive Q&A</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL CONTAINER -->
+    <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true" role="dialog">
+        <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+        <button id="lightbox-prev" class="lightbox-nav-btn lightbox-prev" aria-label="Previous Image">&#10094;</button>
+        <button id="lightbox-next" class="lightbox-nav-btn lightbox-next" aria-label="Next Image">&#10095;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" class="lightbox-img" src="" alt="Gallery Full View">
+            <div class="lightbox-caption">
+                <span id="lightbox-category" class="gallery-category">Category</span>
+                <h3 id="lightbox-title" class="gallery-title">Photo Title</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="brand-logo">
+                        <div class="brand-logo-badge">
+                            <img src="https://res.cloudinary.com/dlttxqrod/image/upload/v1786637314/Scope_2027_nzdcxx.jpg" alt="SCOPE Logo" class="brand-logo-img">
+                        </div>
+                    </a>
+                    <p class="footer-desc">International Medical Conference focusing on advances in endoscopic technologies and clinical education.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="about.html" class="footer-link">About Event</a>
+                        <a href="gallery.html" class="footer-link">Gallery</a>
+                        <a href="contact.html" class="footer-link">Contact Us</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Event Contact</h4>
+                    <div class="footer-links">
+                        <span class="footer-link" data-config="phone">+91 93848 12592</span>
+                        <span class="footer-link" data-config="email">Swethasattanathan@gmail.com</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Registration</h4>
+                    <button class="btn btn-primary open-register-modal" style="width: 100%;">REGISTER NOW</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 <span data-config="hospitalName">Premier Medical Center</span>. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED FLOATING ACTION BUTTONS -->
+    <div class="floating-actions">
+        <a href="#" class="float-btn float-whatsapp" data-config="whatsapp" aria-label="Chat on WhatsApp" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c-.001 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+        </a>
+        <a href="#" class="float-btn float-call" data-config="phone" aria-label="Call Hospital Secretariat">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.12.44 2.33.68 3.58.68a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.24 2.46.68 3.58a1 1 0 01-.27 1.11l-2.2 2.2z"/></svg>
+        </a>
+    </div>
+
+    <!-- MODAL -->
+    <div id="registration-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Register for SCOPE 2027</h2>
+                <p class="modal-subtitle">Reserve your delegate seat and workshop access.</p>
+            </div>
+            <form id="registration-form" class="registration-form">
+                <div class="form-group"><label class="form-label">Full Name <span>*</span></label><input type="text" id="reg-fullname" class="form-input"><span class="error-text"></span></div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Email <span>*</span></label><input type="email" id="reg-email" class="form-input"><span class="error-text"></span></div>
+                    <div class="form-group"><label class="form-label">Phone <span>*</span></label><input type="tel" id="reg-phone" class="form-input"><span class="error-text"></span></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Hospital <span>*</span></label><input type="text" id="reg-hospital" class="form-input"><span class="error-text"></span></div>
+                    <div class="form-group"><label class="form-label">Designation <span>*</span></label><input type="text" id="reg-designation" class="form-input"><span class="error-text"></span></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Specialty <span>*</span></label>
+                        <select id="reg-category" class="form-select">
+                            <option value="">Select Specialty</option>
+                            <option value="Gastroenterologist">Gastroenterologist</option>
+                            <option value="Endoscopist">Advanced Endoscopist</option>
+                            <option value="Physician">Physician</option>
+                            <option value="Endoscopy Technician">Endoscopy Technician</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Medical Student">Medical Student</option>
+                        </select>
+                        <span class="error-text"></span>
+                    </div>
+                    <div class="form-group"><label class="form-label">City <span>*</span></label><input type="text" id="reg-city" class="form-input"><span class="error-text"></span></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Workshop <span>*</span></label>
+                    <select id="reg-workshop" class="form-select">
+                        <option value="">Select Workshop</option>
+                        <option value="Live Demonstration">Live Demonstration</option>
+                        <option value="Hands-on Workshop">Hands-on Workshop</option>
+                    </select>
+                    <span class="error-text"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">SUBMIT REGISTRATION</button>
+            </form>
+            <div id="modal-success-state" class="modal-success-state">
+                <div class="success-icon-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                <h3 style="color:#fff;">Registration Submitted</h3>
+                <p style="color:var(--text-secondary);">Confirmation ticket: <strong id="ticket-number">END2026-000000</strong></p>
+                <button onclick="closeRegistrationModal()" class="btn btn-secondary" style="margin-top:1rem;">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM JS SCRIPTS -->
+    <script src="js/main.js?v=2027"></script>
+    <script src="js/loader.js?v=2027"></script>
+    <script src="js/animations.js?v=2027"></script>
+    <script src="js/registration.js?v=2027"></script>
+</body>
+</html>
